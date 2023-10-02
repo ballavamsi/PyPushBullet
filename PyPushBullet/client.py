@@ -38,3 +38,68 @@ class PushBullet:
         except requests.exceptions.RequestException as e:
             # Log any request-related errors
             logger.error(f'Failed to send notification: {title}. Error: {e}')
+
+    
+    def send_attachment(self, file_name, file_path):
+        if os.path.exists(file_path) is False:
+            logger.error(f"File {file_path} does not exist")
+            return {
+                "error": "File does not exist",
+                "status": 400
+            }
+        
+        # get file type
+        file_type = file_name.split(".")[-1]
+        if file_type not in ["png", "jpg", "jpeg", "gif"]:
+            logger.error(f"File type {file_type} is currently not supported")
+            return {
+                "error": "File type is not currently supported, Try with png, jpg, jpeg or gif",
+                "status": 400
+            }
+        
+        # api call file_type create it
+        file_type = f'image/{file_type}'
+
+        with open(file_path, "rb") as file:
+            res = self.session.post(self.base_url + "upload-request",
+                                    json={
+                                        "file_name": file_name,
+                                        "file_type": file_type
+                                    })
+            if res.status_code == 200:
+                response = res.json()
+                upload_url = response['upload_url']
+                file_url = response['file_url']
+                file_data = response['data']
+                res = requests.post(upload_url, data=file_data, files={'file': file})
+                if res.status_code == 204:
+                    res = self.session.post(self.base_url + "pushes",
+                                            json={
+                                                "type": "file",
+                                                "file_name": file_name,
+                                                "file_type": file_type,
+                                                "file_url": file_url
+                                            })
+                    if res.status_code == 200:
+                        logger.info("File sent")
+                        return {
+                            "status": 200
+                        }
+                    else:
+                        logger.error(f"Error while sending image: {res.text}")
+                        return {
+                            "error": res.text,
+                            "status": res.status_code
+                        }
+                else:
+                    logger.error(f"Error while uploading image: {res.text}")
+                    return {
+                        "error": res.text,
+                        "status": res.status_code
+                    }
+            else:
+                logger.error(f"Error while getting upload url: {res.text}")
+                return {
+                    "error": res.text,
+                    "status": res.status_code
+                }
