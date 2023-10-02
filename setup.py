@@ -3,7 +3,7 @@ from pathlib import Path
 
 setup(
     name='PyPushBullet',
-    version='0.2.4',
+    version='0.2.5',
     description='A simple library to push notification using PushBullet. You need a pushbullet API key for this',
     long_description=Path('PYPIREADME.md').read_text(),
     long_description_content_type='text/markdown',
