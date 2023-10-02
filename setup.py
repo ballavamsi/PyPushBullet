@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='PyPushBullet',
-    version='0.2.0',
+    version='0.2.0-alpha.1',
     description='A simple library to push notification using PushBullet. You need a pushbullet API key for this',
     author='Balla Vamsi Srinivas',
     author_email='ballavamsisrinivas@gmail.com',
