@@ -1,6 +1,7 @@
 # PyPushBullet
 [![PyPI Version](https://img.shields.io/pypi/v/PyPushBullet.svg)](https://pypi.org/project/PyPushBullet/)
 [![License](https://img.shields.io/pypi/l/PyPushBullet.svg)](https://github.com/ballavamsi/PyPushBullet/blob/main/LICENSE)
+
 **PyPushBullet** is a Python library for interacting with the PushBullet API, allowing you to send notifications, links, and files to your devices easily.
 ## Installation
 You can install **PyPushBullet** via pip:
