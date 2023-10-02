@@ -9,23 +9,24 @@ pip install PyPushBullet
 ```
 ## Usage
 ### Initializing the PushBullet Client
-Before using the library, you need to initialize the PushBullet client with your API key. You can either provide the API key explicitly or set it as an environment variable.
+Before using the library, you need to initialize the PushBullet client with your API key. You can either provide the API key explicitly or set it as an environment ariable.
+
 ```python
-from PyPushBullet.client import PushBullet
-# Initialize with API key provided explicitly
-api_key = 'YOUR_PUSHBULLET_API_KEY'
-pb = PushBullet(api_key)
-# Alternatively, set the API key as an environment variable
-# export PUSHBULLET_API_KEY=YOUR_PUSHBULLET_API_KEY
-# Then, initialize without providing the API key
-pb = PushBullet()
+    from PyPushBullet.client import PushBullet
+    # Initialize with API key provided explicitly
+    api_key = 'YOUR_PUSHBULLET_API_KEY'
+    pb = PushBullet(api_key)
+    # Alternatively, set the API key as an environment variable
+    # export PUSHBULLET_API_KEY=YOUR_PUSHBULLET_API_KEY
+    # Then, initialize without providing the API key
+    pb = PushBullet()
 ```
 ### Sending Notifications
 Once the client is initialized, you can use it to send notifications to your devices:
 ```python
-title = 'Hello'
-body = 'This is a test notification'
-pb.send_notification(title, body)
+    title = 'Hello'
+    body = 'This is a test notification'
+    pb.send_notification(title, body)
 ```
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -34,4 +35,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Feel free to contribute to this project by opening issues and pull requests.
 ## Author
 - BALLA VAMSI SRINIVAS
-- GitHub: [Your GitHub Profile](https://github.com/ballavamsi)
+- GitHub: [ballavamsi](https://github.com/ballavamsi)
